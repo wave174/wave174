@@ -1,0 +1,18 @@
+using UnityEngine;
+
+public class HealingItem : MonoBehaviour
+{
+    public int healAmount = 20; // The amount of health to be restored when picked up
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if the player character has collided with the healing item
+        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            // Heal the player and destroy the healing item
+            playerHealth.Heal(healAmount);
+            Destroy(gameObject);
+        }
+    }
+}
